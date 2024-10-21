@@ -5,7 +5,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone your GitHub repository
-                git 'https://github.com/ganeshmalepati/Docker_images_Practice.git'
+                git 'https://github.com/ganeshmalepati/Random.git'
             }
         }
         stage('Build Docker Image') {
