@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     // Build your Docker image
-                    sh 'docker build -t rand.py .'
+                    sh 'docker build -t RandomFile .'
                 }
             }
         }
