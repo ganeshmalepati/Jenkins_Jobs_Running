@@ -1,38 +1,26 @@
 pipeline {
     agent any
-
     stages {
         stage('Clone Repository') {
             steps {
-                // Clone your GitHub repository
                 git 'https://github.com/ganeshmalepati/Random.git'
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build your Docker image
-                    sh 'docker build -t RandomFile .'
+                    docker.build('Dockerfile')
                 }
             }
         }
-/*
-        stage('Run Docker Container') {
+        stage('Run Docker Image') {
             steps {
                 script {
-                    // Run your Docker container
-                    sh 'docker run -d --name your-container-name your-image-name'
+                    docker.image('Dockerfile').inside {
+                        sh 'python rand.py'
+                    }
                 }
             }
-        }
-*/
-    }
-
-    post {
-        always {
-            // Cleanup if needed
-            sh 'docker stop your-container-name || true'
-            sh 'docker rm your-container-name || true'
         }
     }
 }
