@@ -1,0 +1,22 @@
+
+pipeline {
+  agent none
+  stages {
+    stage('Matrix Build') {
+      matrix {
+        axes {
+          axis { name 'PYTHON_VERSION'; values '3.8', '3.9' }
+          axis { name 'OS'; values 'linux', 'windows' }
+        }
+        agent any
+        stages {
+          stage('Run') {
+            steps {
+              sh "python${PYTHON_VERSION} app.py"
+            }
+          }
+        }
+      }
+    }
+  }
+}
